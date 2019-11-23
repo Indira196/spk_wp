@@ -156,51 +156,42 @@
                         </form>
                     </div>
                 </div>
-            </div><br><br>
-            <div class="row">
-                <div class="col-12">
-                    <div class="cart-table clearfix">
-                    <form action="<?php echo base_url('jenispenyakit/create') ?> " method="post">
-                        <table class="table table-responsive">
-                            <thead>
-                                <tr>
-                                    <th>Bagian Anggrek</th>
-                                    <th>Gejala Penyakit</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            <?php foreach($kriteria as $kriteria){ ?>
-                            <?php
+            </div>
+             <!-- Perhitungan -->
+                <div class="col-12 col-lg-10">
+                    <div class="cart-totals-area mt-70">
+                        <h5 class="title--">Prediksi Penyakit Anggrek</h5>
+                        <div class="subtotal d-flex justify-content-between">
+                            <h5>Bagian Anggrek</h5>
+                            <h5>Gejala Penyakit</h5>
+                        </div>
+                        <form action="<?php echo base_url('hitung') ?>" method="post" enctype="multipart/form-data">
+                        <?php foreach($kriteria as $kriteria){ ?>
+                        <?php
                                 $sql = ('SELECT `sub_kriteria`.`keterangan`,`sub_kriteria`.`id_kriteria` FROM `sub_kriteria` INNER JOIN `kriteria` ON `kriteria`.`id_kriteria`=`sub_kriteria`.`id_kriteria` WHERE `sub_kriteria`.`id_kriteria`= '.$this->db->escape($kriteria['id_kriteria']));
                                 $data = $this->db->query($sql);
-                            ?>
-                                <tr>
-                                    <td class="cart_product_img">
-                                        <h5><?php echo $kriteria['kriteria'] ?></h5>
-                                    </td>
-                                    <td class="qty" style="width: 300px;">
-                                        <div class="quantity">
-                                            <select name="id_kriteria" class="custom-select" style="width: 300px;">
-                                            <?php foreach($data->result_array() as $list) {?>
-                                                <option value="<?php echo $list['id_kriteria'] ?>">
-                                                    <?php echo $list['keterangan'] ?>
-                                                </option>
-                                            <?php } ?>
-                                            </select>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                            <?php }?>
-                        </table>
+                        ?>
+                        <div class="shipping d-flex justify-content-between">
+                            <h5><?php echo $kriteria['kriteria'] ?></h5>
+                            <div class="shipping-address">
+                                    <input type="text" name="id_alternatif" class="form-control" value="<?php echo set_value('id_alternatif') ?>">
+                                    <select name="id_kriteria" class="custom-select"  style="width: 300px;">
+                                     <?php foreach($data->result_array() as $list) {?>
+                                         <option value="<?php echo $list['id_kriteria'] ?>">
+                                                <?php echo $list['keterangan'] ?>
+                                        </option>
+                                    <?php } ?>
+                                    </select>
+                            </div>
+
+                        </div>
+                        <?php }?>
                         <div class="checkout-btn">
                             <button class="btn alazea-btn w-100" type="submit" name="submit" value="Create">PROSES</button>
                         </div>
-                    </form>
+                        </form>
                     </div>
                 </div>
-            </div>
-
         </div>
     </div>
         </div>

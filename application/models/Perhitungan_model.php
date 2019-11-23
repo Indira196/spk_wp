@@ -14,7 +14,6 @@
             $this->db->join('admins','admins.admin_id = hitung.user_id','LEFT');
             //$this->db->join('kriteria','kriteria.kriteria = sub_kriteria.kriteria','RIGHT');
             $this->db->join('kriteria','kriteria.id_kriteria = hitung.id_kriteria','LEFT');
-            $this->db->join('sub_kriteria','sub_kriteria.id_sub = hitung.id_sub','LEFT');
             $this->db->join('alternatif','alternatif.id_alternatif = hitung.id_alternatif','LEFT');
             $this->db->order_by('id_hitung','ASC');
             $query = $this->db->get();
